@@ -8,7 +8,7 @@ const productsDB = [
         id: 1, category: 'Shirts', pname: 'Plaid Shirt', price: 3.00, imageUrl:'xyz',
     },
     {
-        id: 2, category: 'Shirts', pname: 'Plaid Shirt', price: 3.00, imageUrl:'xyz',
+        id: 2, category: 'Accessories', pname: 'Plaid Shirt', price: 3.00, imageUrl:'xyz',
     },
 ];
 
@@ -30,7 +30,7 @@ const app = express();
 
 const server = new ApolloServer({
     typeDefs: fs.readFileSync('./server/schema.graphql','utf-8'),
-    resolvers,
+    
   
 });
 
