@@ -3,14 +3,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
 
-const productsDB = [
-    {
-        id: 1, category: 'Shirts', pname: 'Plaid Shirt', price: 3.00, imageUrl:'xyz',
-    },
-    {
-        id: 2, category: 'Accessories', pname: 'Plaid Shirt', price: 3.00, imageUrl:'xyz',
-    },
-];
+const productsDB = [];
 
 const resolvers = {
     Query:{
