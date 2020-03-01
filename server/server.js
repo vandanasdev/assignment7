@@ -39,6 +39,7 @@ const app = express();
 
 const server = new ApolloServer({
     typeDefs: fs.readFileSync('./server/schema.graphql','utf-8'),
+    resolvers,
     
   
 });
