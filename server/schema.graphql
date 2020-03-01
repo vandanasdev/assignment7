@@ -21,6 +21,13 @@ input ProductInputs{
     imageUrl: String
 }
 
+##### Top level declarations
+
+
 type Query {
   productList: [Product!]!
+}
+
+type Mutation{
+     productAdd(product: ProductInputs!):Product!
 }
