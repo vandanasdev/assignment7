@@ -58,15 +58,15 @@ class ProductAdd extends React.Component {
       selected: true,
       value: ""
     }, " -- Select a product -- "), React.createElement("option", {
-      value: "shirts"
+      value: "Shirts"
     }, "Shirts"), React.createElement("option", {
-      value: "jeans"
+      value: "Jeans"
     }, "Jeans"), React.createElement("option", {
-      value: "jackets"
+      value: "Jackets"
     }, "Jackets"), React.createElement("option", {
-      value: "sweaters"
+      value: "Sweaters"
     }, "Sweaters"), React.createElement("option", {
-      value: "accessories"
+      value: "Accessories"
     }, "Accesories"))), React.createElement("div", {
       id: "price"
     }, React.createElement("label", null, "Price Per Unit"), React.createElement("input", {

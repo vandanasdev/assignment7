@@ -76,11 +76,11 @@ class ProductAdd extends React.Component
                         <label>Category </label>
                         <select id="category" >
                             <option disabled selected value=""> -- Select a product -- </option>
-                            <option value="shirts">Shirts</option>
-                            <option value="jeans">Jeans</option>
-                            <option value="jackets">Jackets</option>
-                            <option value="sweaters">Sweaters</option>
-                            <option value="accessories">Accesories</option>
+                            <option value="Shirts">Shirts</option>
+                            <option value="Jeans">Jeans</option>
+                            <option value="Jackets">Jackets</option>
+                            <option value="Sweaters">Sweaters</option>
+                            <option value="Accessories">Accesories</option>
                         </select>
                     </div>
                     <div id="price">
