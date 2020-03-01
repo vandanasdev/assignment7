@@ -115,6 +115,30 @@ class ProductList extends React.Component
         this.createproduct= this.createproduct.bind(this);
     }
 
+    componentDidMount()
+    {
+        this.loadData();
+    }
+    
+    async loadData() {
+        const query = `query {
+          productList {
+            id category pname price imageUrl
+          }
+        }`;
+    
+        const response = await fetch('/graphql', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json'},
+          body: JSON.stringify({ query })
+        });
+
+        
+        const result = await response.json();
+        this.setState({ products: result.data.productList });
+      }
+
+
     createproduct(product){
         product.id= this.state.products.length + 1;
         const newProductList = this.state.products.slice();

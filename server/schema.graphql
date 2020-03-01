@@ -1,0 +1,19 @@
+enum CategoryType{
+    Shirts
+    Jeans
+    Jackets
+    Sweaters
+    Accessories
+}
+
+type Product {
+  id: Int!
+  category: CategoryType!
+  pname: String!
+  price: Float
+  imageUrl: String
+}
+
+type Query {
+  productList: [Product!]!
+}
