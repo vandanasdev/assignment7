@@ -38,7 +38,7 @@ class ProductAdd extends React.Component {
       pname: form.pname.value,
       imageUrl: form.imageUrl.value
     };
-    this.props.createproduct(product);
+    this.props.createProduct(product);
     form.price.value = "$";
     form.pname.value = "";
     form.imageUrl.value = "";
@@ -58,15 +58,15 @@ class ProductAdd extends React.Component {
       selected: true,
       value: ""
     }, " -- Select a product -- "), React.createElement("option", {
-      value: "shirts"
+      value: "Shirts"
     }, "Shirts"), React.createElement("option", {
-      value: "jeans"
+      value: "Jeans"
     }, "Jeans"), React.createElement("option", {
-      value: "jackets"
+      value: "Jackets"
     }, "Jackets"), React.createElement("option", {
-      value: "sweaters"
+      value: "Sweaters"
     }, "Sweaters"), React.createElement("option", {
-      value: "accessories"
+      value: "Accessories"
     }, "Accesories"))), React.createElement("div", {
       id: "price"
     }, React.createElement("label", null, "Price Per Unit"), React.createElement("input", {
@@ -93,7 +93,7 @@ class ProductList extends React.Component {
     this.state = {
       products: []
     };
-    this.createproduct = this.createproduct.bind(this);
+    this.createProduct = this.createProduct.bind(this);
   }
 
   componentDidMount() {
@@ -121,20 +121,32 @@ class ProductList extends React.Component {
     });
   }
 
-  createproduct(product) {
-    product.id = this.state.products.length + 1;
-    const newProductList = this.state.products.slice();
-    newProductList.push(product);
-    this.setState({
-      products: newProductList
+  async createProduct(product) {
+    const query = `mutation productAdd($product: ProductInputs!){
+            productAdd(product: $product){
+                id
+            }
+        }`;
+    const response = await fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          product
+        }
+      })
     });
+    this.loadData();
   }
 
   render() {
     return React.createElement(React.Fragment, null, React.createElement("h1", null, "My Company Inventory"), React.createElement("div", null, "Showing all available products"), React.createElement("hr", null), React.createElement(ProductTable, {
       products: this.state.products
     }), React.createElement("br", null), React.createElement("div", null, " Add a new product to the inventory "), React.createElement("hr", null), React.createElement(ProductAdd, {
-      createproduct: this.createproduct
+      createProduct: this.createProduct
     }));
   }
 

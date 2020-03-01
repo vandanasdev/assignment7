@@ -16,12 +16,21 @@ const resolvers = {
     Query:{
         productList,
     },
+    Mutation: {
+        productAdd,
+    },
    
 };
 
-
 function productList(){
     return productsDB;
+}
+
+function productAdd(_, {product }){
+    product.id = productsDB.length + 1;
+    productsDB.push(product);
+    return product;
+
 }
 
 
@@ -30,6 +39,7 @@ const app = express();
 
 const server = new ApolloServer({
     typeDefs: fs.readFileSync('./server/schema.graphql','utf-8'),
+    resolvers,
     
   
 });

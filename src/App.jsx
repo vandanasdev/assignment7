@@ -63,7 +63,7 @@ class ProductAdd extends React.Component
         const product={
             category:form.category.value, price: priceValue, pname: form.pname.value, imageUrl: form.imageUrl.value
         }
-        this.props.createproduct(product);
+        this.props.createProduct(product);
         form.price.value="$"; form.pname.value="";form.imageUrl.value=""; form.category.value="";
         
     }
@@ -76,11 +76,11 @@ class ProductAdd extends React.Component
                         <label>Category </label>
                         <select id="category" >
                             <option disabled selected value=""> -- Select a product -- </option>
-                            <option value="shirts">Shirts</option>
-                            <option value="jeans">Jeans</option>
-                            <option value="jackets">Jackets</option>
-                            <option value="sweaters">Sweaters</option>
-                            <option value="accessories">Accesories</option>
+                            <option value="Shirts">Shirts</option>
+                            <option value="Jeans">Jeans</option>
+                            <option value="Jackets">Jackets</option>
+                            <option value="Sweaters">Sweaters</option>
+                            <option value="Accessories">Accesories</option>
                         </select>
                     </div>
                     <div id="price">
@@ -112,7 +112,7 @@ class ProductList extends React.Component
     {
         super();
         this.state= {products: []};
-        this.createproduct= this.createproduct.bind(this);
+        this.createProduct= this.createProduct.bind(this);
     }
 
     componentDidMount()
@@ -139,11 +139,21 @@ class ProductList extends React.Component
       }
 
 
-    createproduct(product){
-        product.id= this.state.products.length + 1;
-        const newProductList = this.state.products.slice();
-        newProductList.push(product);
-        this.setState({products: newProductList});
+    async createProduct(product){
+      
+        const query =`mutation productAdd($product: ProductInputs!){
+            productAdd(product: $product){
+                id
+            }
+        }`;
+ 
+        const response = await fetch('/graphql', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json'},
+         body: JSON.stringify({ query, variables: {product} })
+       });
+ 
+       this.loadData();
     }
 
     
@@ -159,7 +169,7 @@ class ProductList extends React.Component
                 <br />
                 <div> Add a new product to the inventory </div>
                 <hr />
-                <ProductAdd createproduct={this.createproduct}/>
+                <ProductAdd createProduct={this.createProduct}/>
             </React.Fragment>
         );
 
