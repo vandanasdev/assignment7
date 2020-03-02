@@ -97,11 +97,11 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    //call to loadData so that data is displayed in the list even after the page is refreshed
-    this.loadData();
+    //call to listData so that data is displayed in the list even after the page is refreshed
+    this.listData();
   }
 
-  async loadData() {
+  async listData() {
     const query = `query {
           productList {
             id category pname price imageUrl
@@ -140,7 +140,7 @@ class ProductList extends React.Component {
         }
       })
     });
-    this.loadData();
+    this.listData();
   }
 
   render() {
