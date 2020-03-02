@@ -114,9 +114,10 @@ class ProductList extends React.Component
         this.state= {products: []};
         this.createProduct= this.createProduct.bind(this);
     }
+    
 
     componentDidMount()
-    {
+    {   //call to loadData so that data is displayed in the list even after the page is refreshed
         this.loadData();
     }
     

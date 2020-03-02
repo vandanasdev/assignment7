@@ -19,7 +19,7 @@ function productList(){
     return productsDB;
 }
 
-function productAdd(_, {product }){
+function productAdd(_, {product}){
     product.id = productsDB.length + 1;
     productsDB.push(product);
     return product;

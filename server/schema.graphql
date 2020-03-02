@@ -14,6 +14,9 @@ type Product {
   imageUrl: String
 }
 
+
+# input to the productAdd mutation
+
 input ProductInputs{
     category: CategoryType!
     pname: String!
