@@ -21,7 +21,6 @@ const resolvers = {
 
 async function productList(){
     const products = await db.collection('products').find({}).toArray();
-    console.log("hello");
     return products;
 }
 
