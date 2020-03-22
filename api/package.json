@@ -1,0 +1,27 @@
+{
+  "name": "assignment4-api",
+  "version": "1.0.0",
+  "description": "CS648 Spring 2020 Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js,graphql server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vandanasdev/assignment4.git"
+  },
+  "author": "Vandana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vandanasdev/assignment4/products"
+  },
+  "homepage": "https://github.com/vandanasdev/assignment4#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.10.1",
+    "express": "^4.17.1",
+    "graphql": "^0.13.2",
+    "mongodb": "^3.5.5",
+    "nodemon": "^1.19.4"
+  }
+}
