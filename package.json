@@ -1,5 +1,5 @@
 {
-  "name": "assignment3",
+  "name": "assignment4",
   "version": "1.0.0",
   "description": "CS648 Spring 2020 Assignment",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vandanasdev/assignment3.git"
+    "url": "git+https://github.com/vandanasdev/assignment4.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vandanasdev/assignment3/products"
+    "url": "https://github.com/vandanasdev/assignment4/products"
   },
-  "homepage": "https://github.com/vandanasdev/assignment3#readme",
+  "homepage": "https://github.com/vandanasdev/assignment4#readme",
   "dependencies": {
     "apollo-server-express": "^2.10.1",
     "express": "^4.17.1",
