@@ -25,10 +25,21 @@ async function productList(){
     return products;
 }
 
-function productAdd(_, {product}){
-    product.id = productsDB.length + 1;
-    productsDB.push(product);
-    return product;
+async function getNextSequence(name) {
+    const result = await db.collection('counters').findOneAndUpdate(
+      { _id: name },
+      { $inc: { current: 1 } },
+      { returnOriginal: false },
+    );
+    return result.value.current;
+  }
+
+async function productAdd(_, {product}){
+    product.id = await getNextSequence('products');
+    const result = await db.collection('products').insertOne(product);
+    const savedProduct = await db.collection('products')
+      .findOne({ _id:result.insertedId });
+    return savedProduct;
 
 }
 
