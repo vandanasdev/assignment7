@@ -3,7 +3,7 @@ class ProductRow extends React.Component
 {
     render(){
         const product= this.props.product;
-        
+        console.log("Hi");
         return(
             <tr>
                <td>{product.pname}</td>
@@ -129,7 +129,7 @@ class ProductList extends React.Component
           }
         }`;
     
-        const response = await fetch('/graphql', {
+        const response = await fetch('http://localhots:3000/graphql', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json'},
           body: JSON.stringify({ query })
@@ -149,7 +149,7 @@ class ProductList extends React.Component
             }
         }`;
  
-        const response = await fetch('/graphql', {
+        const response = await fetch('http://localhots:3000/graphql', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json'},
          body: JSON.stringify({ query, variables: {product} })

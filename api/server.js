@@ -44,7 +44,7 @@ async function productAdd(_, {product}){
 
 
 
-const app = express();
+
 
 async function connectToDb() {
     const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -60,7 +60,7 @@ const server = new ApolloServer({
   
 });
 
-app.use(express.static('public'));
+const app = express();
 
 server.applyMiddleware({app, path: '/graphql'});
 
