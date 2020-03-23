@@ -1,9 +1,10 @@
 const fs = require('fs');
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb+srv://vandana:qwerty12A@cluster0-gogey.mongodb.net/productsinventory?retryWrites=true&w=majority';
+const url = process.env.DB_URL || 'mongodb+srv://vandana:qwerty12A@cluster0-gogey.mongodb.net/productsinventory?retryWrites=true&w=majority';
 
 let db;
 
@@ -62,13 +63,15 @@ const server = new ApolloServer({
 
 server.applyMiddleware({app, path: '/graphql'});
 
+const port = process.env.API_SERVER_PORT || 3000;
+
 (async function () {
     try {
       await connectToDb();
       app.listen(3000, () => {
         // console.log('API server started on port 3000');
         // console.log("DB URL",process.env.DB_URL);
-        console.log(`API server started on port 3000`);
+        console.log(`API server started on port ${port}`);
       });
     } catch (err) {
       console.log('ERROR:', err);

@@ -1,3 +1,4 @@
+require('dot').config();
 const { MongoClient } = require('mongodb');
 
 const url = 'mongodb+srv://vandana:qwerty12A@cluster0-gogey.mongodb.net/productsinventory?retryWrites=true&w=majority';
