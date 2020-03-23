@@ -10,7 +10,7 @@
  */
 
 /* global db print */
-/* eslint no-restricted-globals:"off" */
+/* eslint no-restricted-globals: "off" */
 
 db.products.remove({});
 
