@@ -1,7 +1,7 @@
 require('dot').config();
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb+srv://vandana:qwerty12A@cluster0-gogey.mongodb.net/productsinventory?retryWrites=true&w=majority';
+const url = process.env.DB_URL || 'mongodb+srv://vandana:qwerty12A@cluster0-gogey.mongodb.net/productsinventory?retryWrites=true&w=majority';
 
 function testWithCallbacks(callback) {
   console.log('\n--- testWithCallbacks ----');
