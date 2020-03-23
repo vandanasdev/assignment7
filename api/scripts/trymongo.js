@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 require('dot').config();
 const { MongoClient } = require('mongodb');
 
@@ -16,7 +17,9 @@ function testWithCallbacks(callback) {
     const db = client.db();
     const collection = db.collection('products');
 
-    const product = { id: 1, category:'Jeans',pname:'A. Callback', price: 23, imageUrl:'xyz.jpg' };
+    const product = {
+      id: 1, category: 'Jeans', pname: 'A. Callback', price: 23, imageUrl: 'xyz.jpg',
+    };
     collection.insertOne(product, (insertErr, result) => {
       if (insertErr) {
         client.close();
@@ -39,6 +42,7 @@ function testWithCallbacks(callback) {
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 async function testWithAsync(callback) {
   console.log('\n--- testWithAsync ----');
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -47,7 +51,9 @@ async function testWithAsync(callback) {
     console.log('Connected to MongoDB URL', url);
     const db = client.db();
     const collection = db.collection('products');
-    const product = { id: 3, category:'Sweaters', pname: 'B. Async', price: 18, imageUrl: 'abc.jpg' };
+    const product = {
+      id: 3, category: 'Sweaters', pname: 'B. Async', price: 18, imageUrl: 'abc.jpg',
+    };
     const result = await collection.insertOne(product);
     console.log('Result of insert:\n', result.insertedId);
     const docs = await collection.find({ _id: result.insertedId })

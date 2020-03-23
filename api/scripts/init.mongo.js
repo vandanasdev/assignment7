@@ -20,14 +20,14 @@ const productsDB = [
     category: 'Jeans',
     pname: 'Blue Jeans',
     price: 50.99,
-    imageUrl: "abc.jpg",
+    imageUrl: 'abc.jpg',
   },
   {
     id: 2,
     category: 'Sweater',
     pname: 'Red sweater',
     price: 30.99,
-    imageUrl: "xyz.jpg",
+    imageUrl: 'xyz.jpg',
   },
 ];
 
@@ -42,4 +42,3 @@ db.counters.insert({ _id: 'products', current: count });
 db.products.createIndex({ id: 1 }, { unique: true });
 db.products.createIndex({ category: 1 });
 db.products.createIndex({ pname: 1 });
-
