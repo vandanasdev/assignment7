@@ -18,5 +18,6 @@ const port = process.env.UI_SERVER_PORT || 8000;
 
 
 app.listen(8000, () => {
+  // eslint-disable-next-line no-console
   console.log(`UI started on port ${port}`);
 });
