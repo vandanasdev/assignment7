@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 
-/* globals React */
+import React from 'react';
 
 
 function ProductRow({ product }) {

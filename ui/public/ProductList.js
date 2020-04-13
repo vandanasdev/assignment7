@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _react = _interopRequireDefault(require("react"));
+
 var _ProductFilter = _interopRequireDefault(require("./ProductFilter.jsx"));
 
 var _ProductTable = _interopRequireDefault(require("./ProductTable.jsx"));
@@ -141,15 +143,15 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var products = this.state.products;
-      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "My Company Inventory"), /*#__PURE__*/React.createElement(_ProductFilter.default, null), /*#__PURE__*/React.createElement("div", null, "Showing all available products"), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(_ProductTable.default, {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "My Company Inventory"), /*#__PURE__*/_react.default.createElement(_ProductFilter.default, null), /*#__PURE__*/_react.default.createElement("div", null, "Showing all available products"), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement(_ProductTable.default, {
         products: products
-      }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, " Add a new product to the inventory "), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(_ProductAdd.default, {
+      }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", null, " Add a new product to the inventory "), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement(_ProductAdd.default, {
         createProduct: this.createProduct
       }));
     }
   }]);
 
   return ProductList;
-}(React.Component);
+}(_react.default.Component);
 
 exports.default = ProductList;

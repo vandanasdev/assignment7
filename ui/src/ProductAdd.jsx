@@ -2,7 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable max-len */
-/* globals React PropTypes */
+
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ProductAdd extends React.Component {
   constructor() {
