@@ -1,4 +1,5 @@
 import React from 'react';
+import URLSearchParams from 'url-search-params';
 
 import ProductFilter from './ProductFilter.jsx';
 import ProductTable from './ProductTable.jsx';
@@ -16,6 +17,14 @@ export default class ProductList extends React.Component {
   componentDidMount() {
     // call to listData so that data is displayed in the list even after the page is refreshed
     this.listData();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { location: { search: prevSearch } } = prevProps;
+    const { location: { search } } = this.props;
+    if (prevSearch !== search) {
+      this.loadData();
+    }
   }
 
   async listData() {

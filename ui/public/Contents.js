@@ -13,6 +13,8 @@ var _ProductList = _interopRequireDefault(require("./ProductList.jsx"));
 
 var _ProductImageDisplay = _interopRequireDefault(require("./ProductImageDisplay.jsx"));
 
+var _ProductEdit = _interopRequireDefault(require("./ProductEdit.jsx"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var NotFound = function NotFound() {
@@ -27,6 +29,9 @@ function Contents() {
   }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/products",
     component: _ProductList.default
+  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/edit/:id",
+    component: _ProductEdit.default
   }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/imagedisplay/:imageUrl",
     component: _ProductImageDisplay.default

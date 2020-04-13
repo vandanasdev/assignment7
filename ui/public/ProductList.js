@@ -7,6 +7,8 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _urlSearchParams = _interopRequireDefault(require("url-search-params"));
+
 var _ProductFilter = _interopRequireDefault(require("./ProductFilter.jsx"));
 
 var _ProductTable = _interopRequireDefault(require("./ProductTable.jsx"));
@@ -66,6 +68,16 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // call to listData so that data is displayed in the list even after the page is refreshed
       this.listData();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var prevSearch = prevProps.location.search;
+      var search = this.props.location.search;
+
+      if (prevSearch !== search) {
+        this.loadData();
+      }
     }
   }, {
     key: "listData",

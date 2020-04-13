@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-no-target-blank */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function ProductRow({ product }) {
   return (
@@ -9,6 +11,9 @@ function ProductRow({ product }) {
       <td>{`$${product.price}`}</td>
       <td>{product.category}</td>
       <td><a href={`/#/imagedisplay/${product.imageUrl}`}>View</a></td>
+      <td>
+        <Link to={`/edit/${product.id}`}>Edit</Link>
+      </td>
     </tr>
   );
 }
@@ -25,6 +30,8 @@ export default function ProductTable({ products }) {
           <th>Price</th>
           <th>Category</th>
           <th>Image</th>
+          <th>Action</th>
+
         </tr>
       </thead>
       <tbody>
