@@ -24,7 +24,7 @@ export default class ProductList extends React.Component {
     const { location: { search: prevSearch } } = prevProps;
     const { location: { search } } = this.props;
     if (prevSearch !== search) {
-      this.loadData();
+      this.listData();
     }
   }
 
@@ -35,7 +35,7 @@ export default class ProductList extends React.Component {
             }
           }`;
 
-    const data = await graphQLFetch(query);
+    const data = await graphQLFetch(query, vars);
     if (data) {
       this.setState({ products: data.productList });
     }
