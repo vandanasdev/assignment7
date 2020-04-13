@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import URLSearchParams from 'url-search-params';
 
 import ProductFilter from './ProductFilter.jsx';
