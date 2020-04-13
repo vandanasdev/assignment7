@@ -26,6 +26,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+/* eslint-disable max-len */
+
+/* eslint-disable react/destructuring-assignment */
+
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
+/* eslint-disable jsx-a11y/label-has-for */
+
+/* eslint-disable react/jsx-no-target-blank */
+
+/* eslint-disable react/prefer-stateless-function */
+
+/* eslint "react/react-in-jsx-scope": "off" */
+
+/* globals React ReactDOM */
+
+/* eslint "react/jsx-no-undef": "off" */
+
+/* eslint "react/no-multi-comp": "off" */
+
+/* eslint "no-alert": "off" */
 var ProductRow = /*#__PURE__*/function (_React$Component) {
   _inherits(ProductRow, _React$Component);
 
@@ -41,7 +64,7 @@ var ProductRow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var product = this.props.product;
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, product.pname), /*#__PURE__*/React.createElement("td", null, "$" + product.price), /*#__PURE__*/React.createElement("td", null, product.category), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, product.pname), /*#__PURE__*/React.createElement("td", null, "$".concat(product.price)), /*#__PURE__*/React.createElement("td", null, product.category), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
         target: "_blank",
         href: product.imageUrl
       }, "View")));
@@ -65,6 +88,7 @@ var ProductTable = /*#__PURE__*/function (_React$Component2) {
   _createClass(ProductTable, [{
     key: "render",
     value: function render() {
+      // eslint-disable-next-line react/destructuring-assignment
       var productRows = this.props.products.map(function (product) {
         return /*#__PURE__*/React.createElement(ProductRow, {
           key: product.id,
@@ -106,12 +130,13 @@ var ProductAdd = /*#__PURE__*/function (_React$Component3) {
         price: priceValue,
         pname: form.pname.value,
         imageUrl: form.imageUrl.value
-      };
+      }; // eslint-disable-next-line react/destructuring-assignment
+
       this.props.createProduct(product);
-      form.price.value = "$";
-      form.pname.value = "";
-      form.imageUrl.value = "";
-      form.category.value = "";
+      form.price.value = '$';
+      form.pname.value = '';
+      form.imageUrl.value = '';
+      form.category.value = '';
     }
   }, {
     key: "render",
@@ -180,7 +205,7 @@ var ProductList = /*#__PURE__*/function (_React$Component4) {
   _createClass(ProductList, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      //call to listData so that data is displayed in the list even after the page is refreshed
+      // call to listData so that data is displayed in the list even after the page is refreshed
       this.listData();
     }
   }, {
@@ -194,7 +219,7 @@ var ProductList = /*#__PURE__*/function (_React$Component4) {
               case 0:
                 query = "query {\n          productList {\n            id category pname price imageUrl\n          }\n        }";
                 _context.next = 3;
-                return fetch('http://localhost:3000/graphql', {
+                return fetch(window.ENV.UI_API_ENDPOINT, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json'
