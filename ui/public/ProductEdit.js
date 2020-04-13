@@ -119,7 +119,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-        var _this$state, product, invalidFields, query, id, created, changes, data;
+        var _this$state, product, invalidFields, query, id, changes, data;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -137,7 +137,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
 
               case 4:
                 query = "mutation issueUpdate(\n      $id: Int!\n      $changes: ProductUpdateInputs!\n    ) {\n      issueUpdate(\n        id: $id\n        changes: $changes\n      ) {\n        id category pname\n        price imageUrl\n      }\n    }";
-                id = product.id, created = product.created, changes = _objectWithoutProperties(product, ["id", "created"]);
+                id = product.id, changes = _objectWithoutProperties(product, ["id"]);
                 _context.next = 8;
                 return (0, _graphQLFetch.default)(query, {
                   changes: changes,
@@ -149,7 +149,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
 
                 if (data) {
                   this.setState({
-                    issue: data.productUpdate
+                    product: data.productUpdate
                   });
                   alert('Updated product successfully'); // eslint-disable-line no-alert
                 }
@@ -231,9 +231,9 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
       var _this$state$product = this.state.product,
           category = _this$state$product.category,
           pname = _this$state$product.pname;
-      var _this$state$issue = this.state.issue,
-          price = _this$state$issue.price,
-          imageUrl = _this$state$issue.imageUrl;
+      var _this$state$product2 = this.state.product,
+          price = _this$state$product2.price,
+          imageUrl = _this$state$product2.imageUrl;
       return /*#__PURE__*/_react.default.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/_react.default.createElement("h3", null, "Editing Product: ".concat(id)), /*#__PURE__*/_react.default.createElement("table", null, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, "Price:"), /*#__PURE__*/_react.default.createElement(_NumInput.default, {

@@ -64,10 +64,10 @@ export default class ProductEdit extends React.Component {
       }
     }`;
 
-    const { id, created, ...changes } = product;
+    const { id, ...changes } = product;
     const data = await graphQLFetch(query, { changes, id });
     if (data) {
-      this.setState({ issue: data.productUpdate });
+      this.setState({ product: data.productUpdate });
       alert('Updated product successfully'); // eslint-disable-line no-alert
     }
   }
@@ -105,7 +105,7 @@ export default class ProductEdit extends React.Component {
     }
 
     const { product: { category, pname } } = this.state;
-    const { issue: { price, imageUrl } } = this.state;
+    const { product: { price, imageUrl } } = this.state;
 
 
     return (
