@@ -2,14 +2,13 @@
 
 import React from 'react';
 
-
 function ProductRow({ product }) {
   return (
     <tr>
       <td>{product.pname}</td>
       <td>{`$${product.price}`}</td>
       <td>{product.category}</td>
-      <td><a target="_blank" href={product.imageUrl}>View</a></td>
+      <td><a href={`/#/imagedisplay/${product.imageUrl}`}>View</a></td>
     </tr>
   );
 }

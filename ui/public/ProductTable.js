@@ -13,8 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function ProductRow(_ref) {
   var product = _ref.product;
   return /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, product.pname), /*#__PURE__*/_react.default.createElement("td", null, "$".concat(product.price)), /*#__PURE__*/_react.default.createElement("td", null, product.category), /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement("a", {
-    target: "_blank",
-    href: product.imageUrl
+    href: "/#/imagedisplay/".concat(product.imageUrl)
   }, "View")));
 }
 
