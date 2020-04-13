@@ -98,7 +98,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
       var value = naturalValue === undefined ? textValue : naturalValue;
       this.setState(function (prevState) {
         return {
-          issue: _objectSpread({}, prevState.issue, _defineProperty({}, name, value))
+          product: _objectSpread({}, prevState.product, _defineProperty({}, name, value))
         };
       });
     }
@@ -148,6 +148,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
                 data = _context.sent;
 
                 if (data) {
+                  console.log(data);
                   this.setState({
                     product: data.productUpdate
                   });

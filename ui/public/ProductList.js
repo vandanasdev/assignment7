@@ -83,16 +83,20 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
     key: "listData",
     value: function () {
       var _listData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var query, data;
+        var search, params, vars, query, data;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                search = this.props.location.search;
+                params = new _urlSearchParams.default(search);
+                vars = {};
+                if (params.get('status')) vars.status = params.get('status');
                 query = "query {\n            productList {\n              id category pname price imageUrl\n            }\n          }";
-                _context.next = 3;
-                return (0, _graphQLFetch.default)(query);
+                _context.next = 7;
+                return (0, _graphQLFetch.default)(query, vars);
 
-              case 3:
+              case 7:
                 data = _context.sent;
 
                 if (data) {
@@ -101,7 +105,7 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
                   });
                 }
 
-              case 5:
+              case 9:
               case "end":
                 return _context.stop();
             }

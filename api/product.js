@@ -34,7 +34,9 @@ async function add(_, { product }) {
 async function update(_, { id, changes }) {
   const db = getDb();
   if (changes.category || changes.pname || changes.price || changes.imageUrl) {
+    console.log(`hello${changes.pname}`);
     const product = await db.collection('products').findOne({ id });
+    console.log({ id });
     Object.assign(product, changes);
     validate(product);
   }

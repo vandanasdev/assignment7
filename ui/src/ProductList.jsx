@@ -29,13 +29,18 @@ export default class ProductList extends React.Component {
   }
 
   async listData() {
+    const { location: { search } } = this.props;
+    const params = new URLSearchParams(search);
+    const vars = {};
+    if (params.get('status')) vars.status = params.get('status');
+
     const query = `query {
             productList {
               id category pname price imageUrl
             }
           }`;
 
-    const data = await graphQLFetch(query);
+    const data = await graphQLFetch(query, vars);
     if (data) {
       this.setState({ products: data.productList });
     }
