@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ProductTable;
 
+/* eslint-disable react/jsx-no-target-blank */
+
 /* globals React */
 function ProductRow(_ref) {
   var product = _ref.product;
