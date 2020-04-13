@@ -90,7 +90,7 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
               case 0:
                 query = "query {\n            productList {\n              id category pname price imageUrl\n            }\n          }";
                 _context.next = 3;
-                return (0, _graphQLFetch.default)(query, vars);
+                return (0, _graphQLFetch.default)(query);
 
               case 3:
                 data = _context.sent;

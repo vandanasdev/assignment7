@@ -35,7 +35,7 @@ export default class ProductList extends React.Component {
             }
           }`;
 
-    const data = await graphQLFetch(query, vars);
+    const data = await graphQLFetch(query);
     if (data) {
       this.setState({ products: data.productList });
     }
