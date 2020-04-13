@@ -13,7 +13,7 @@
 /* eslint no-restricted-globals:"off" */
 
 db.products.remove({});
-db.deleted_issues.remove({});
+db.deleted_products.remove({});
 
 const productsDB = [
   {
@@ -44,4 +44,4 @@ db.products.createIndex({ id: 1 }, { unique: true });
 db.products.createIndex({ category: 1 });
 db.products.createIndex({ pname: 1 });
 
-db.deleted_issues.createIndex({ id: 1 }, { unique: true });
+db.deleted_products.createIndex({ id: 1 }, { unique: true });
