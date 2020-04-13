@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
-function ProductRow({ product }) {
+const ProductRow = withRouter(({
+  product, location: { search }, deleteProduct, index,
+}) => {
+  // eslint-disable-next-line no-unused-vars
+  const selectLocation = { pathname: `/products/${product.id}`, search };
   return (
     <tr>
       <td>{product.pname}</td>
@@ -13,14 +17,25 @@ function ProductRow({ product }) {
       <td><a href={`/#/imagedisplay/${product.imageUrl}`}>View</a></td>
       <td>
         <Link to={`/edit/${product.id}`}>Edit</Link>
+        {' | '}
+        <button type="button" onClick={() => { deleteProduct(index); }}>
+          Delete
+        </button>
       </td>
     </tr>
   );
-}
+});
 
-export default function ProductTable({ products }) {
+export default function ProductTable({ products, deleteProduct }) {
   // eslint-disable-next-line react/destructuring-assignment
-  const productRows = products.map(product => <ProductRow key={product.id} product={product} />);
+  const productRows = products.map((product, index) => (
+    <ProductRow
+      key={product.id}
+      product={product}
+      deleteProduct={deleteProduct}
+      index={index}
+    />
+  ));
 
   return (
     <table className="bordered-table">

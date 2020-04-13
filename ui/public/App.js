@@ -14,7 +14,7 @@ var _Page = _interopRequireDefault(require("./Page.jsx"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var element = /*#__PURE__*/_react.default.createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react.default.createElement(_Page.default, null));
+var element = /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_Page.default, null));
 
 _reactDom.default.render(element, document.getElementById('myCompInventory'));
 
