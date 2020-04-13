@@ -78,6 +78,8 @@ export default class ProductList extends React.Component {
         newList.splice(index, 1);
         return { products: newList };
       });
+      // eslint-disable-next-line no-alert
+      alert('Product Deleted successfully');
     } else {
       this.listData();
     }
@@ -91,7 +93,10 @@ export default class ProductList extends React.Component {
         <ProductFilter />
         <div>Showing all available products</div>
         <hr />
-        <ProductTable products={products} />
+        <ProductTable
+          products={products}
+          deleteProduct={this.deleteProduct}
+        />
         <br />
         <div> Add a new product to the inventory </div>
         <hr />

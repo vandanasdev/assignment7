@@ -205,7 +205,9 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
                     return {
                       products: newList
                     };
-                  });
+                  }); // eslint-disable-next-line no-alert
+
+                  alert('Product Deleted successfully');
                 } else {
                   this.listData();
                 }
@@ -229,7 +231,8 @@ var ProductList = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var products = this.state.products;
       return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h1", null, "My Company Inventory"), /*#__PURE__*/_react.default.createElement(_ProductFilter.default, null), /*#__PURE__*/_react.default.createElement("div", null, "Showing all available products"), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement(_ProductTable.default, {
-        products: products
+        products: products,
+        deleteProduct: this.deleteProduct
       }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", null, " Add a new product to the inventory "), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement(_ProductAdd.default, {
         createProduct: this.createProduct
       }), /*#__PURE__*/_react.default.createElement("hr", null));
