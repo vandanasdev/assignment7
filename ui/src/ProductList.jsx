@@ -1,6 +1,7 @@
 /* globals React */
 /* eslint "react/jsx-no-undef": "off" */
 
+import ProductFilter from './ProductFilter.jsx';
 import ProductTable from './ProductTable.jsx';
 import ProductAdd from './ProductAdd.jsx';
 import graphQLFetch from './graphQLFetch.js';
@@ -51,6 +52,7 @@ export default class ProductList extends React.Component {
     return (
       <React.Fragment>
         <h1>My Company Inventory</h1>
+        <ProductFilter />
         <div>Showing all available products</div>
         <hr />
         <ProductTable products={products} />
