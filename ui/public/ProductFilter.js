@@ -46,7 +46,7 @@ var ProductFilter = /*#__PURE__*/function (_React$Component) {
   _createClass(ProductFilter, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement("div", null, "This is a placeholder for the Product filter.");
+      return /*#__PURE__*/_react.default.createElement("div", null);
     }
   }]);
 
