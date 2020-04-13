@@ -13,6 +13,7 @@
 /* eslint no-restricted-globals:"off" */
 
 db.products.remove({});
+db.deleted_issues.remove({});
 
 const productsDB = [
   {
@@ -42,3 +43,5 @@ db.counters.insert({ _id: 'products', current: count });
 db.products.createIndex({ id: 1 }, { unique: true });
 db.products.createIndex({ category: 1 });
 db.products.createIndex({ pname: 1 });
+
+db.deleted_issues.createIndex({ id: 1 }, { unique: true });
