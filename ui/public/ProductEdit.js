@@ -148,7 +148,6 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
                 data = _context.sent;
 
                 if (data) {
-                  console.log(data);
                   this.setState({
                     product: data.productUpdate
                   });

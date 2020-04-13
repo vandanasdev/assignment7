@@ -67,7 +67,6 @@ export default class ProductEdit extends React.Component {
     const { id, ...changes } = product;
     const data = await graphQLFetch(query, { changes, id });
     if (data) {
-      console.log(data);
       this.setState({ product: data.productUpdate });
       alert('Updated product successfully'); // eslint-disable-line no-alert
     }
