@@ -12,6 +12,7 @@
 /* eslint "react/no-multi-comp": "off" */
 /* eslint "no-alert": "off" */
 
+import graphQLFetch from './graphQLFetch.js';
 
 class ProductRow extends React.Component {
   render() {
@@ -127,15 +128,10 @@ class ProductList extends React.Component {
           }
         }`;
 
-    const response = await fetch(window.ENV.UI_API_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query }),
-    });
-
-
-    const result = await response.json();
-    this.setState({ products: result.data.productList });
+    const data = await graphQLFetch(query);
+    if (data) {
+      this.setState({ products: data.productList });
+    }
   }
 
 
@@ -146,13 +142,10 @@ class ProductList extends React.Component {
             }
         }`;
 
-    const response = await fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, variables: { product } }),
-    });
-
-    this.listData();
+    const data = await graphQLFetch(query, { product });
+    if (data) {
+      this.listData();
+    }
   }
 
 

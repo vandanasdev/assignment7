@@ -1,5 +1,9 @@
 "use strict";
 
+var _graphQLFetch = _interopRequireDefault(require("./graphQLFetch.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -26,29 +30,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-/* eslint-disable max-len */
-
-/* eslint-disable react/destructuring-assignment */
-
-/* eslint-disable no-unused-vars */
-
-/* eslint-disable jsx-a11y/label-has-associated-control */
-
-/* eslint-disable jsx-a11y/label-has-for */
-
-/* eslint-disable react/jsx-no-target-blank */
-
-/* eslint-disable react/prefer-stateless-function */
-
-/* eslint "react/react-in-jsx-scope": "off" */
-
-/* globals React ReactDOM */
-
-/* eslint "react/jsx-no-undef": "off" */
-
-/* eslint "react/no-multi-comp": "off" */
-
-/* eslint "no-alert": "off" */
 var ProductRow = /*#__PURE__*/function (_React$Component) {
   _inherits(ProductRow, _React$Component);
 
@@ -212,35 +193,25 @@ var ProductList = /*#__PURE__*/function (_React$Component4) {
     key: "listData",
     value: function () {
       var _listData = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var query, response, result;
+        var query, data;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 query = "query {\n          productList {\n            id category pname price imageUrl\n          }\n        }";
                 _context.next = 3;
-                return fetch(window.ENV.UI_API_ENDPOINT, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                    query: query
-                  })
-                });
+                return (0, _graphQLFetch.default)(query);
 
               case 3:
-                response = _context.sent;
-                _context.next = 6;
-                return response.json();
+                data = _context.sent;
 
-              case 6:
-                result = _context.sent;
-                this.setState({
-                  products: result.data.productList
-                });
+                if (data) {
+                  this.setState({
+                    products: data.productList
+                  });
+                }
 
-              case 8:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -258,29 +229,23 @@ var ProductList = /*#__PURE__*/function (_React$Component4) {
     key: "createProduct",
     value: function () {
       var _createProduct = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(product) {
-        var query, response;
+        var query, data;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 query = "mutation productAdd($product: ProductInputs!){\n            productAdd(product: $product){\n                id\n            }\n        }";
                 _context2.next = 3;
-                return fetch('http://localhost:3000/graphql', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                    query: query,
-                    variables: {
-                      product: product
-                    }
-                  })
+                return (0, _graphQLFetch.default)(query, {
+                  product: product
                 });
 
               case 3:
-                response = _context2.sent;
-                this.listData();
+                data = _context2.sent;
+
+                if (data) {
+                  this.listData();
+                }
 
               case 5:
               case "end":
