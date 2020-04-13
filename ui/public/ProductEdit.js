@@ -136,7 +136,7 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
                 return _context.abrupt("return");
 
               case 4:
-                query = "mutation issueUpdate(\n      $id: Int!\n      $changes: ProductUpdateInputs!\n    ) {\n      issueUpdate(\n        id: $id\n        changes: $changes\n      ) {\n        id category pname\n        price imageUrl\n      }\n    }";
+                query = "mutation productUpdate(\n      $id: Int!\n      $changes: ProductUpdateInputs!\n    ) {\n      productUpdate(\n        id: $id\n        changes: $changes\n      ) {\n        id category pname\n        price imageUrl\n      }\n    }";
                 id = product.id, changes = _objectWithoutProperties(product, ["id"]);
                 _context.next = 8;
                 return (0, _graphQLFetch.default)(query, {
@@ -236,12 +236,12 @@ var ProductEdit = /*#__PURE__*/function (_React$Component) {
           imageUrl = _this$state$product2.imageUrl;
       return /*#__PURE__*/_react.default.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/_react.default.createElement("h3", null, "Editing Product: ".concat(id)), /*#__PURE__*/_react.default.createElement("table", null, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, "Price:"), /*#__PURE__*/_react.default.createElement(_NumInput.default, {
+      }, /*#__PURE__*/_react.default.createElement("h3", null, "Editing Product: ".concat(id)), /*#__PURE__*/_react.default.createElement("table", null, /*#__PURE__*/_react.default.createElement("tbody", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, "Price:"), /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement(_NumInput.default, {
         name: "price",
         value: price,
         onChange: this.onChange,
         key: id
-      })), /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, "Category:"), /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement("select", {
+      }))), /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("td", null, "Category:"), /*#__PURE__*/_react.default.createElement("td", null, /*#__PURE__*/_react.default.createElement("select", {
         name: "category",
         value: category,
         onChange: this.onChange

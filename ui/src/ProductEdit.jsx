@@ -51,11 +51,11 @@ export default class ProductEdit extends React.Component {
     const { product, invalidFields } = this.state;
     if (Object.keys(invalidFields).length !== 0) return;
 
-    const query = `mutation issueUpdate(
+    const query = `mutation productUpdate(
       $id: Int!
       $changes: ProductUpdateInputs!
     ) {
-      issueUpdate(
+      productUpdate(
         id: $id
         changes: $changes
       ) {
@@ -115,12 +115,15 @@ export default class ProductEdit extends React.Component {
           <tbody>
             <tr>
               <td>Price:</td>
-              <NumInput
-                name="price"
-                value={price}
-                onChange={this.onChange}
-                key={id}
-              />
+              <td>
+                <NumInput
+                  name="price"
+                  value={price}
+                  onChange={this.onChange}
+                  key={id}
+                />
+              </td>
+
             </tr>
             <tr>
               <td>Category:</td>

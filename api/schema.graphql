@@ -25,6 +25,15 @@ input ProductInputs{
     imageUrl: String
 }
 
+"""Inputs for productUpdate: aWhichever is specified will
+be set to the given value, undefined fields will remain unmodified."""
+input ProductUpdateInputs {
+    category: CategoryType
+    pname: String!
+    price: Float
+    imageUrl: String
+}
+
 ##### Top level declarations
 
 
@@ -35,4 +44,5 @@ type Query {
 
 type Mutation{
      productAdd(product: ProductInputs!):Product!
+     productUpdate(id: Int! , changes: ProductUpdateInputs!): Product!
 }
