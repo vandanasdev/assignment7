@@ -45,8 +45,9 @@ class ProductAddNavItem extends React.Component {
   async handleSubmit(e) {
     e.preventDefault();
     this.hideModal();
-    const form = document.forms.ProductAdd;
+    const form = document.forms.productAdd;
     const priceValue = (form.price.value).slice(1);
+    console.log(`Category :${form.price.value}`);
     const product = {
       category: form.category.value,
       price: priceValue,
@@ -88,8 +89,12 @@ class ProductAddNavItem extends React.Component {
           <Modal.Body>
             <Form name="productAdd">
               <FormGroup>
+                <ControlLabel>Product Name</ControlLabel>
+                <FormControl name="pname" autoFocus />
+              </FormGroup>
+              <FormGroup>
                 <ControlLabel>Category</ControlLabel>
-                <FormControl componentClass="select" name="category" autoFocus>
+                <FormControl componentClass="select" name="category">
                   <option value="Shirts">Shirts</option>
                   <option value="Jeans">Jeans</option>
                   <option value="Jackets">Jackets</option>
@@ -98,16 +103,12 @@ class ProductAddNavItem extends React.Component {
                 </FormControl>
               </FormGroup>
               <FormGroup>
-                <ControlLabel>Product Name</ControlLabel>
-                <FormControl name="pname" />
-              </FormGroup>
-              <FormGroup>
                 <ControlLabel>Price</ControlLabel>
                 <FormControl name="price" />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>ImageURL</ControlLabel>
-                <FormControl name="imgUrl" />
+                <FormControl name="imageUrl" />
               </FormGroup>
             </Form>
           </Modal.Body>
