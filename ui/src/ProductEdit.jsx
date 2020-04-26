@@ -54,7 +54,7 @@ export default class ProductEdit extends React.Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    this.showingValidation();
+    this.showValidation();
     const { product, invalidFields } = this.state;
     if (Object.keys(invalidFields).length !== 0) return;
 
