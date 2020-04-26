@@ -5,15 +5,22 @@ import { Panel } from 'react-bootstrap';
 
 import ProductFilter from './ProductFilter.jsx';
 import ProductTable from './ProductTable.jsx';
-import ProductAdd from './ProductAdd.jsx';
 import graphQLFetch from './graphQLFetch.js';
+import Toast from './Toast.jsx';
 
 export default class ProductList extends React.Component {
   constructor() {
     super();
-    this.state = { products: [] };
-    this.createProduct = this.createProduct.bind(this);
+    this.state = {
+      products: [],
+      toastVisible: false,
+      toastMessage: '',
+      toastType: 'info',
+    };
     this.deleteProduct = this.deleteProduct.bind(this);
+    this.showSuccess = this.showSuccess.bind(this);
+    this.showError = this.showError.bind(this);
+    this.dismissToast = this.dismissToast.bind(this);
   }
 
 
@@ -42,25 +49,25 @@ export default class ProductList extends React.Component {
             }
           }`;
 
-    const data = await graphQLFetch(query, vars);
+    const data = await graphQLFetch(query, vars, this.showError);
     if (data) {
       this.setState({ products: data.productList });
     }
   }
 
 
-  async createProduct(product) {
+  /* async createProduct(product) {
     const query = `mutation productAdd($product: ProductInputs!){
               productAdd(product: $product){
                   id
               }
           }`;
 
-    const data = await graphQLFetch(query, { product });
+    const data = await graphQLFetch(query, { product }, this.showError);
     if (data) {
       this.listData();
     }
-  }
+  } */
 
   async deleteProduct(index) {
     const query = `mutation productDelete($id: Int!) {
@@ -69,7 +76,7 @@ export default class ProductList extends React.Component {
     const { products } = this.state;
     const { location: { pathname, search }, history } = this.props;
     const { id } = products[index];
-    const data = await graphQLFetch(query, { id });
+    const data = await graphQLFetch(query, { id }, this.showError);
     if (data && data.productDelete) {
       this.setState((prevState) => {
         const newList = [...prevState.products];
@@ -79,15 +86,31 @@ export default class ProductList extends React.Component {
         newList.splice(index, 1);
         return { products: newList };
       });
-      // eslint-disable-next-line no-alert
-      alert('Product Deleted successfully');
+      this.showSuccess(`Product ${id} Deleted successfully`);
     } else {
       this.listData();
     }
   }
 
+  showSuccess(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'success',
+    });
+  }
+
+  showError(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'danger',
+    });
+  }
+
+  dismissToast() {
+    this.setState({ toastVisible: false });
+  }
+
   render() {
     const { products } = this.state;
+    const { toastVisible, toastType, toastMessage } = this.state;
     return (
       <React.Fragment>
         <Panel>
@@ -105,10 +128,13 @@ export default class ProductList extends React.Component {
           deleteProduct={this.deleteProduct}
         />
         <br />
-        <div> Add a new product to the inventory </div>
-        <hr />
-        <ProductAdd createProduct={this.createProduct} />
-        <hr />
+        <Toast
+          showing={toastVisible}
+          onDismiss={this.dismissToast}
+          bsStyle={toastType}
+        >
+          {toastMessage}
+        </Toast>
       </React.Fragment>
     );
   }

@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
   Col, Panel, Form, FormGroup, FormControl, ControlLabel,
-  ButtonToolbar, Button,
+  ButtonToolbar, Button, Alert,
 } from 'react-bootstrap';
 
 import graphQLFetch from './graphQLFetch.js';
 import NumInput from './NumInput.jsx';
 import TextInput from './TextInput.jsx';
+import Toast from './Toast.jsx';
 
 export default class ProductEdit extends React.Component {
   constructor() {
@@ -16,10 +17,17 @@ export default class ProductEdit extends React.Component {
     this.state = {
       product: {},
       invalidFields: {},
+      showingValidation: false,
+      toastVisible: false,
+      toastMessage: '',
+      toastType: 'success',
     };
     this.onChange = this.onChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onValidityChange = this.onValidityChange.bind(this);
+    this.showSuccess = this.showSuccess.bind(this);
+    this.showError = this.showError.bind(this);
+    this.dismissToast = this.dismissToast.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +61,7 @@ export default class ProductEdit extends React.Component {
 
   async handleSubmit(e) {
     e.preventDefault();
+    this.showValidation();
     const { product, invalidFields } = this.state;
     if (Object.keys(invalidFields).length !== 0) return;
 
@@ -70,10 +79,10 @@ export default class ProductEdit extends React.Component {
     }`;
 
     const { id, ...changes } = product;
-    const data = await graphQLFetch(query, { changes, id });
+    const data = await graphQLFetch(query, { changes, id }, this.showError);
     if (data) {
       this.setState({ product: data.productUpdate });
-      alert('Updated product successfully'); // eslint-disable-line no-alert
+      this.showSuccess('Updated product successfully');
     }
   }
 
@@ -85,9 +94,34 @@ export default class ProductEdit extends React.Component {
     }`;
 
     const { match: { params: { id } } } = this.props;
-    const data = await graphQLFetch(query, { id });
+    const data = await graphQLFetch(query, { id }, this.showError);
     this.setState({ product: data ? data.product : {}, invalidFields: {} });
   }
+
+  showValidation() {
+    this.setState({ showingValidation: true });
+  }
+
+  dismissValidation() {
+    this.setState({ showingValidation: false });
+  }
+
+  showSuccess(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'success',
+    });
+  }
+
+  showError(message) {
+    this.setState({
+      toastVisible: true, toastMessage: message, toastType: 'danger',
+    });
+  }
+
+  dismissToast() {
+    this.setState({ toastVisible: false });
+  }
+
 
   render() {
     const { product: { id } } = this.state;
@@ -99,18 +133,19 @@ export default class ProductEdit extends React.Component {
       return null;
     }
 
-    const { invalidFields } = this.state;
+    const { invalidFields, showingValidation } = this.state;
     let validationMessage;
-    if (Object.keys(invalidFields).length !== 0) {
+    if (Object.keys(invalidFields).length !== 0 && showingValidation) {
       validationMessage = (
-        <div className="error">
+        <Alert bsStyle="danger" onDismiss={this.dismissValidation}>
           Please correct invalid fields before submitting.
-        </div>
+        </Alert>
       );
     }
 
     const { product: { category, pname } } = this.state;
     const { product: { price, imageUrl } } = this.state;
+    const { toastVisible, toastMessage, toastType } = this.state;
 
 
     return (
@@ -160,14 +195,23 @@ export default class ProductEdit extends React.Component {
                 </ButtonToolbar>
               </Col>
             </FormGroup>
+            <FormGroup>
+              <Col smOffset={3} sm={9}>{validationMessage}</Col>
+            </FormGroup>
           </Form>
-          {validationMessage}
         </Panel.Body>
         <Panel.Footer>
           <Link to={`/edit/${id - 1}`}>Prev</Link>
           {' | '}
           <Link to={`/edit/${id + 1}`}>Next</Link>
         </Panel.Footer>
+        <Toast
+          showing={toastVisible}
+          onDismiss={this.dismissToast}
+          bsStyle={toastType}
+        >
+          {toastMessage}
+        </Toast>
       </Panel>
 
     );
