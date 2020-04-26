@@ -26,3 +26,18 @@ npm install --save-dev webpack-hot-middleware@2
 ```
 cd ui
 npm install react-router-dom@4
+
+Chapter 11: React-Bootstrap
+### Installation
+```
+cd ui
+npm install react-bootstrap@0
+npm install bootstrap@3
+ln -s ../node_modules/bootstrap/dist public/bootstrap
+```
+
+### Navigation Bar
+```
+cd ui
+npm install react-router-bootstrap@0
+```
