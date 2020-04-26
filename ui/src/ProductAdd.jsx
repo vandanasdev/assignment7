@@ -5,6 +5,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Form, FormControl, FormGroup, ControlLabel, Button,
+} from 'react-bootstrap';
 
 export default class ProductAdd extends React.Component {
   constructor() {
@@ -26,7 +29,7 @@ export default class ProductAdd extends React.Component {
 
   render() {
     return (
-      <form name="ProductAdd" onSubmit={this.handleSubmit}>
+      <Form name="ProductAdd" onSubmit={this.handleSubmit}>
         <section className="grid-1">
           <div>
             <label>Category </label>
@@ -54,7 +57,7 @@ export default class ProductAdd extends React.Component {
           <button type="submit" className="butn"> Add Product</button>
         </section>
 
-      </form>
+      </Form>
     );
   }
 }

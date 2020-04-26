@@ -1,5 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import {
+  Col, Panel, Form, FormGroup, FormControl, ControlLabel,
+  ButtonToolbar, Button,
+} from 'react-bootstrap';
 
 import graphQLFetch from './graphQLFetch.js';
 import NumInput from './NumInput.jsx';
@@ -109,69 +114,62 @@ export default class ProductEdit extends React.Component {
 
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>{`Editing Product: ${id}`}</h3>
-        <table>
-          <tbody>
-            <tr>
-              <td>Price:</td>
-              <td>
-                <NumInput
-                  name="price"
-                  value={price}
-                  onChange={this.onChange}
-                  key={id}
-                />
-              </td>
-
-            </tr>
-            <tr>
-              <td>Category:</td>
-              <td>
-                <select name="category" value={category} onChange={this.onChange}>
+      <Panel>
+        <Panel.Heading>
+          <Panel.Title>{`Editing Product: ${id}`}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          <Form horizontal onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Price</Col>
+              <Col sm={9}>
+                <FormControl componentClass={NumInput} name="" value={price} onChange={this.onChange} key={id} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>Category</Col>
+              <Col sm={9}>
+                <FormControl componentClass="select" name="category" value={category} onChange={this.onChange}>
                   <option value="Shirts">Shirts</option>
                   <option value="Jeans">Jeans</option>
                   <option value="Jackets">Jackets</option>
                   <option value="Sweaters">Sweaters</option>
                   <option value="Accessories">Accesories</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Product Name:</td>
-              <td>
-                <TextInput
-                  name="pname"
-                  value={pname}
-                  onChange={this.onChange}
-                  key={id}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Url:</td>
-              <td>
-                <TextInput
-                  size={100}
-                  name="imgUrl"
-                  value={imageUrl}
-                  onChange={this.onChange}
-                  key={id}
-                />
-              </td>
-            </tr>
+                </FormControl>
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>ProductName</Col>
+              <Col sm={9}>
+                <FormControl componentClass={TextInput} name="pname" value={pname} onChange={this.onChange} key={id} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col componentClass={ControlLabel} sm={3}>URL</Col>
+              <Col sm={9}>
+                <FormControl componentClass={TextInput} name="imgUrl" value={imageUrl} onChange={this.onChange} key={id} />
+              </Col>
+            </FormGroup>
+            <FormGroup>
+              <Col smOffset={3} sm={6}>
+                <ButtonToolbar>
+                  <Button bsStyle="primary" type="submit">Submit</Button>
+                  <LinkContainer to="/products">
+                    <Button bsStyle="link">Back</Button>
+                  </LinkContainer>
+                </ButtonToolbar>
+              </Col>
+            </FormGroup>
+          </Form>
+          {validationMessage}
+        </Panel.Body>
+        <Panel.Footer>
+          <Link to={`/edit/${id - 1}`}>Prev</Link>
+          {' | '}
+          <Link to={`/edit/${id + 1}`}>Next</Link>
+        </Panel.Footer>
+      </Panel>
 
-            <tr>
-              <td />
-              <td><button type="submit">Submit</button></td>
-            </tr>
-          </tbody>
-        </table>
-        {validationMessage}
-        <Link to={`/edit/${id - 1}`}>Prev</Link>
-        {' | '}
-        <Link to={`/edit/${id + 1}`}>Next</Link>
-      </form>
     );
   }
 }
