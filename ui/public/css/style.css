@@ -1,14 +1,7 @@
   
-table.bordered-table th,td{ 
-    border: 1px solid silver; 
-    padding: 4px;
-    text-transform: capitalize;
-    width: 150px;}
-
-
-table.bordered-table {
-    border-collapse: collapse;
-    text-align: left;}
+table.table-hover tr{
+    cursor: pointer;
+}
 
 #price{
     display: inline;
@@ -36,5 +29,11 @@ table.bordered-table {
 .butn:hover{
     background-color: blue;
     color:white;
+}
+
+.panel-title a {
+    display: block;
+    width: 100%;
+    cursor: pointer;
 }
      
