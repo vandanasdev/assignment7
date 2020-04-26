@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
 
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
-  Button, Glyphicon, Tooltip, OverlayTrigger,
+  Button, Glyphicon, Tooltip, OverlayTrigger, Table,
 } from 'react-bootstrap';
 
 
@@ -13,27 +14,44 @@ const ProductRow = withRouter(({
   // eslint-disable-next-line no-unused-vars
   const selectLocation = { pathname: `/products/${product.id}`, search };
   const editTooltip = (
-    <Tooltip id="close-tooltip" placement="top">Edit Issue</Tooltip>
+    <Tooltip id="close-tooltip" placement="top">Edit Product</Tooltip>
   );
   const deleteTooltip = (
-    <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
+    <Tooltip id="delete-tooltip" placement="top">Delete Producr</Tooltip>
   );
-  return (
+
+  function onDelete(e) {
+    e.preventDefault();
+    deleteProduct(index);
+  }
+  const tableRow = (
     <tr>
       <td>{product.pname}</td>
       <td>{`$${product.price}`}</td>
       <td>{product.category}</td>
       <td><a href={`/#/imagedisplay/${product.imageUrl}`}>View</a></td>
       <td>
-        <Link to={`/edit/${product.id}`}>Edit</Link>
+        <LinkContainer to={`/edit/${product.id}`}>
+          <OverlayTrigger delayShow={1000} overlay={editTooltip}>
+            <Button bsSize="xsmall">
+              <Glyphicon glyph="edit" />
+            </Button>
+          </OverlayTrigger>
+        </LinkContainer>
         {' | '}
         <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
-          <Button bsSize="xsmall" onClick={() => { deleteProduct(index); }}>
+          <Button bsSize="xsmall" onClick={onDelete}>
             <Glyphicon glyph="trash" />
           </Button>
         </OverlayTrigger>
       </td>
     </tr>
+  );
+
+  return (
+    <LinkContainer to={selectLocation}>
+      {tableRow}
+    </LinkContainer>
   );
 });
 
@@ -49,7 +67,7 @@ export default function ProductTable({ products, deleteProduct }) {
   ));
 
   return (
-    <table className="bordered-table">
+    <Table bordered condensed hover responsive>
       <thead>
         <tr>
           <th>Product Name</th>
@@ -63,7 +81,6 @@ export default function ProductTable({ products, deleteProduct }) {
       <tbody>
         {productRows}
       </tbody>
-
-    </table>
+    </Table>
   );
 }
