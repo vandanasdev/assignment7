@@ -89,7 +89,6 @@ export default class ProductList extends React.Component {
     const { products } = this.state;
     return (
       <React.Fragment>
-        <h1>My Company Inventory</h1>
         <ProductFilter />
         <div>Showing all available products</div>
         <hr />

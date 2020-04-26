@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import {
+  Button, Glyphicon, Tooltip, OverlayTrigger,
+} from 'react-bootstrap';
 
 
 const ProductRow = withRouter(({
@@ -9,6 +12,12 @@ const ProductRow = withRouter(({
 }) => {
   // eslint-disable-next-line no-unused-vars
   const selectLocation = { pathname: `/products/${product.id}`, search };
+  const editTooltip = (
+    <Tooltip id="close-tooltip" placement="top">Edit Issue</Tooltip>
+  );
+  const deleteTooltip = (
+    <Tooltip id="delete-tooltip" placement="top">Delete Issue</Tooltip>
+  );
   return (
     <tr>
       <td>{product.pname}</td>
@@ -18,9 +27,11 @@ const ProductRow = withRouter(({
       <td>
         <Link to={`/edit/${product.id}`}>Edit</Link>
         {' | '}
-        <button type="button" onClick={() => { deleteProduct(index); }}>
-          Delete
-        </button>
+        <OverlayTrigger delayShow={1000} overlay={deleteTooltip}>
+          <Button bsSize="xsmall" onClick={() => { deleteProduct(index); }}>
+            <Glyphicon glyph="trash" />
+          </Button>
+        </OverlayTrigger>
       </td>
     </tr>
   );
