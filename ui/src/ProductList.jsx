@@ -1,6 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import URLSearchParams from 'url-search-params';
+import { Panel } from 'react-bootstrap';
 
 import ProductFilter from './ProductFilter.jsx';
 import ProductTable from './ProductTable.jsx';
@@ -89,7 +90,14 @@ export default class ProductList extends React.Component {
     const { products } = this.state;
     return (
       <React.Fragment>
-        <ProductFilter />
+        <Panel>
+          <Panel.Heading>
+            <Panel.Title toggle>Filter</Panel.Title>
+          </Panel.Heading>
+          <Panel.Body collapsible>
+            <ProductFilter />
+          </Panel.Body>
+        </Panel>
         <div>Showing all available products</div>
         <hr />
         <ProductTable

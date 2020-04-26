@@ -37,4 +37,10 @@ table.bordered-table {
     background-color: blue;
     color:white;
 }
+
+.panel-title a {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
      
