@@ -24,7 +24,7 @@ export default class ProductImage extends React.Component {
     const { match: { params: { id } } } = this.props;
     const query = `query product($id: Int!) {
       product (id: $id) {
-        id imageUrl
+        id imageUrl pname
       }
     }`;
 
@@ -37,11 +37,14 @@ export default class ProductImage extends React.Component {
   }
 
   render() {
-    const { product: { description } } = this.state;
+    const { product: { id, imageUrl, pname } } = this.state;
     return (
       <div>
-        <h3>Description</h3>
-        <img url={`/${description}`} alt="Produc" />
+        <h3>
+          Product &nbsp;
+          {id}
+        </h3>
+        <img src={`${imageUrl}`} alt={`${pname}`} />
       </div>
     );
   }
