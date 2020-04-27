@@ -89,18 +89,18 @@ class ProductAddNavItem extends React.Component {
           <Modal.Body>
             <Form name="productAdd">
               <FormGroup>
-                <ControlLabel>Product Name</ControlLabel>
-                <FormControl name="pname" autoFocus />
-              </FormGroup>
-              <FormGroup>
                 <ControlLabel>Category</ControlLabel>
-                <FormControl componentClass="select" name="category">
+                <FormControl componentClass="select" name="category" autoFocus>
                   <option value="Shirts">Shirts</option>
                   <option value="Jeans">Jeans</option>
                   <option value="Jackets">Jackets</option>
                   <option value="Sweaters">Sweaters</option>
                   <option value="Accessories">Accesories</option>
                 </FormControl>
+                <FormGroup>
+                  <ControlLabel>Product Name</ControlLabel>
+                  <FormControl name="pname" />
+                </FormGroup>
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Price</ControlLabel>
