@@ -104,7 +104,7 @@ class ProductAddNavItem extends React.Component {
               </FormGroup>
               <FormGroup>
                 <ControlLabel>Price</ControlLabel>
-                <FormControl name="price" />
+                <FormControl name="price" defaultValue="$" />
               </FormGroup>
               <FormGroup>
                 <ControlLabel>ImageURL</ControlLabel>
