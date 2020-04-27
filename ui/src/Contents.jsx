@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import ProductList from './ProductList.jsx';
-import ProductImageDisplay from './ProductImageDisplay.jsx';
+import ProductImage from './ProductImage.jsx';
 import ProductEdit from './ProductEdit.jsx';
 import ProductReport from './ProductReport.jsx';
 
@@ -16,7 +16,7 @@ export default function Contents() {
       <Route path="/products" component={ProductList} />
       <Route path="/report" component={ProductReport} />
       <Route path="/edit/:id" component={ProductEdit} />
-      <Route path="/imagedisplay/:imageUrl" component={ProductImageDisplay} />
+      <Route path="/view/:id" component={ProductImage} />
       <Route component={NotFound} />
     </Switch>
   );
