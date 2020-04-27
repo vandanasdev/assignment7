@@ -11,7 +11,6 @@ import {
 const ProductRow = withRouter(({
   product, location: { search }, deleteProduct, index,
 }) => {
-  // eslint-disable-next-line no-unused-vars
   const selectLocation = { pathname: `/products/${product.id}`, search };
   const editTooltip = (
     <Tooltip id="close-tooltip" placement="top">Edit Product</Tooltip>
@@ -29,7 +28,9 @@ const ProductRow = withRouter(({
       <td>{product.pname}</td>
       <td>{`$${product.price}`}</td>
       <td>{product.category}</td>
-      <td><a href={`/#/imagedisplay/${product.imageUrl}`}>View</a></td>
+      <td>
+        <LinkContainer to={`/view/${product.id}`}><a href={`/${product.id}`}>View</a></LinkContainer>
+      </td>
       <td>
         <LinkContainer to={`/edit/${product.id}`}>
           <OverlayTrigger delayShow={1000} overlay={editTooltip}>
