@@ -53,6 +53,7 @@ export default class ProductList extends React.Component {
       this.setState({ products: data.productList });
     }
 
+    // code to retrive total count of products
     const query2 = `query productTotalCounts{
       productTotalCounts
       }
