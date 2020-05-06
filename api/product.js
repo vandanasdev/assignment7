@@ -57,10 +57,17 @@ async function remove(_, { id }) {
   return false;
 }
 
+async function totalProduct() {
+  const db = getDb();
+  const result = await db.collection('products').aggregate([{ $group: { _id: null, count: { $sum: 1 } } }]).toArray();
+  return result[0].count;
+}
+
 module.exports = {
   list,
   add,
   get,
   update,
   delete: remove,
+  totalProduct,
 };

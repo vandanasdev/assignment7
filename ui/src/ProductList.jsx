@@ -1,9 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import URLSearchParams from 'url-search-params';
-import { Panel } from 'react-bootstrap';
 
-import ProductFilter from './ProductFilter.jsx';
 import ProductTable from './ProductTable.jsx';
 import graphQLFetch from './graphQLFetch.js';
 import Toast from './Toast.jsx';
@@ -13,6 +11,7 @@ export default class ProductList extends React.Component {
     super();
     this.state = {
       products: [],
+      totalCount: 0,
       toastVisible: false,
       toastMessage: '',
       toastType: 'info',
@@ -53,21 +52,22 @@ export default class ProductList extends React.Component {
     if (data) {
       this.setState({ products: data.productList });
     }
+
+    const query2 = `query productTotalCounts{
+      productTotalCounts
+      }
+    `;
+
+    const data2 = await graphQLFetch(query2);
+    // eslint-disable-next-line no-console
+    console.log(data2.productTotalCounts);
+    if (data) {
+      this.setState({ totalCount: data2.productTotalCounts });
+    } else {
+      this.setState({ totalCount: 0 });
+    }
   }
 
-
-  /* async createProduct(product) {
-    const query = `mutation productAdd($product: ProductInputs!){
-              productAdd(product: $product){
-                  id
-              }
-          }`;
-
-    const data = await graphQLFetch(query, { product }, this.showError);
-    if (data) {
-      this.listData();
-    }
-  } */
 
   async deleteProduct(index) {
     const query = `mutation productDelete($id: Int!) {
@@ -87,6 +87,7 @@ export default class ProductList extends React.Component {
         return { products: newList };
       });
       this.showSuccess(`Product ${id} Deleted successfully`);
+      this.listData();
     } else {
       this.listData();
     }
@@ -110,18 +111,17 @@ export default class ProductList extends React.Component {
 
   render() {
     const { products } = this.state;
+    const { totalCount } = this.state;
     const { toastVisible, toastType, toastMessage } = this.state;
     return (
       <React.Fragment>
-        <Panel>
-          <Panel.Heading>
-            <Panel.Title toggle>Filter</Panel.Title>
-          </Panel.Heading>
-          <Panel.Body collapsible>
-            <ProductFilter />
-          </Panel.Body>
-        </Panel>
-        <div>Showing all available products</div>
+        <div>
+          Showing
+          {' '}
+          {totalCount}
+          {' '}
+          Available Products
+        </div>
         <hr />
         <ProductTable
           products={products}
