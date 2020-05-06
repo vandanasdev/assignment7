@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "assignment7",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -26,10 +26,10 @@
   "description": "CS648 Spring 2020 Assignment",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vandanasdev/assignment6.git"
+    "url": "git+https://github.com/vandanasdev/assignment7.git"
   },
   "bugs": {
-    "url": "https://github.com/vandanasdev/assignment6/issues"
+    "url": "https://github.com/vandanasdev/assignment7/issues"
   },
   "homepage": "https://github.com/vandanasdev/assignment6#readme"
 }
